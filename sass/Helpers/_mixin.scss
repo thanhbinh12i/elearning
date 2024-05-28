@@ -1,0 +1,79 @@
+
+@mixin styleText($color, $fs, $fw){
+      color: $color;
+      font-size: $fs;
+      font-weight: $fw;
+}
+
+@mixin styleButton($color,$bg-color,$border, $fs, $fw, $pd-y, $pd-x){
+      color: $color;
+      background-color: $bg-color;
+      border: 1px solid $border;
+      font-size: $fs;
+      font-weight: $fw;
+      padding: $pd-y $pd-x;
+      cursor: pointer;
+}
+@mixin hoverButton($color,$bg-color,$border){
+      color: $color;
+      background-color: $bg-color;
+      border: 1px solid $border;
+}
+@mixin styleFormSearch($bg-color, $bg-color-focus, $border-color, $color){
+      .input-group {
+            background-color: $bg-color;
+            .form-control {
+                  background-color: transparent;
+                  border-color: transparent;
+                  box-shadow: none;
+                  transition: none;
+                  color: $color;
+                  &::placeholder{
+                        color: $color;
+                  }
+                  &:focus {
+                        background-color: $bg-color-focus;
+                        border-top-color: $border-color;
+                        border-left-color:$border-color;
+                        border-bottom-color: $border-color;
+                  }
+                  //+ đi kiếm thẻ cùng cấp độ
+                  &:focus + .input-group-text {
+                        background-color: $bg-color-focus;
+                        border-top-color: $border-color;
+                        border-right-color:$border-color;
+                        border-bottom-color: $border-color;
+                        color: $color-red-0;
+                        // & parent selector
+                        &:hover {
+                              color: $color-white-0;
+                              background-color: $color-red-0;
+                        }
+                  }
+            }
+
+            .input-group-text {
+                  background-color: transparent;
+                  border-color: transparent;
+                  color: $color-red-0;
+                  // & parent selector
+                  &:hover {
+                        color: $color-white-0;
+                        background-color: $color-red-0;
+                  }
+            }
+      }
+}
+@mixin responsive($screen){
+      // kiểm tra tồn tại
+      @if map-has-key($map: $breakpoints, $key: $screen){
+            //lấy thuộc tính
+            $value: map-get($map: $breakpoints, $key: $screen);
+            @media screen and (max-width: $value){
+                  @content;
+            }
+      }
+      @else {
+            @warn "`{$screen}` is not valid in breakpoints";
+      }
+}

@@ -1,0 +1,39 @@
+.partners{
+      background-color: $color-gray-5;
+      padding-top: $pd-3;
+      .partners__content{
+            width: 70%;
+            margin: 0 auto;
+            .partners__text{
+                  text-align: center;
+            }
+            .partners__img{
+                  display: flex;
+                  justify-content: space-between;
+            }
+      }
+      @include responsive("extra-large"){
+            .partners__content{
+                  width: 80%;
+            }
+      }
+      @include responsive("large"){
+            .partners__content{
+                  width: 90%;
+            }
+      }
+      @include responsive("medium"){
+            .partners__content{
+                  width: 60%;
+                  .partners__img{
+                        flex-wrap:  wrap;
+                        .partners__item{
+                              width: 50%;
+                              text-align: center;
+                              margin-bottom: $mg-0 + 5;
+                        }
+                  } 
+            }
+             
+      }
+}
